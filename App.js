@@ -9,13 +9,14 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const formData = new FormData();
     formData.append('message', reportText);
     if (file) formData.append('file', file);
 
     try {
-      const res = await axios.post('https://backen-zypl.onrender.com/api/report', formData, {...});
+      const res = await axios.post('http://localhost:5000/api/report', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      }); 
       setResponse(res.data.message);
       setReportText('');
       setFile(null);
@@ -30,7 +31,6 @@ function App() {
       <div className="report-box">
         <h1>📢 Hệ thống tố cáo tham nhũng</h1>
         <p className="subtitle">Bạn có thể gửi nội dung tố cáo ẩn danh kèm minh chứng.</p>
-
         <form onSubmit={handleSubmit}>
           <textarea
             placeholder="Nhập nội dung tố cáo tại đây..."
@@ -45,7 +45,6 @@ function App() {
           />
           <button type="submit">Gửi tố cáo</button>
         </form>
-
         {response && <div className="response">{response}</div>}
       </div>
     </div>
