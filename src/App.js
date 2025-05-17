@@ -15,7 +15,11 @@ function App() {
     if (file) formData.append('file', file);
 
     try {
-      const res = await axios.post('https://backen-zypl.onrender.com/api/report', formData, {...});
+      const res = await axios.post('https://backen-7.onrender.com/api/report', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
       setResponse(res.data.message);
       setReportText('');
       setFile(null);
