@@ -15,7 +15,7 @@ function App() {
     if (file) formData.append('file', file);
 
     try {
-      const res = await axios.post('https://backen-7.onrender.com/api/report', formData, {
+      const res = await axios.post('https://backen-9.onrender.com/api/report', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
